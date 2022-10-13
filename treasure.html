@@ -171,36 +171,56 @@
             lastCheck = position;
         }
         function help() {
-            column = lastCheck % 5;
-            row = lastCheck / 5;
-            treasureColumn = treasureLocation % 5;
-            treasureRow = treasureLocation / 5;
-            score += 2;
-            document.getElementById("Score").innerHTML = "Score is " + score + ".";
-            if (lastCheck == treasureLocation) {
-                document.getElementById("help").innerHTML = "Sorry, no help available";
+
+            var row = Math.floor(lastCheck / 5)
+            var column = lastCheck % 5
+
+            var treasureRow = Math.floor(treasureLocation / 5)
+            var treasureColumn = treasureLocation % 5
+
+            if (row == treasureRow && column == treasureColumn) {
+                document.getElementById("help").innerHTML = "Already, won the game. Sorry, no help available"
             }
-            else if (parseInt(row) == parseInt(treasureRow)) {
-                if (row < treasureRow) {
-                    document.getElementById("help").innerHTML = "right";
+            else if (row == treasureRow) {
+                if (treasureLocation - lastCheck > 0) {
+                    document.getElementById("help").innerHTML = "right"
                 }
                 else {
-                    document.getElementById("help").innerHTML = "left";
+                    document.getElementById("help").innerHTML = "left"
                 }
             }
             else if (column == treasureColumn) {
-                if (lastCheck < treasureLocation) {
-                    document.getElementById("help").innerHTML = "down";
+                if (treasureLocation - lastCheck > 0) {
+                    document.getElementById("help").innerHTML = "down"
                 }
                 else {
-                    document.getElementById("help").innerHTML = "up";
+                    document.getElementById("help").innerHTML = "up"
                 }
             }
             else {
-                document.getElementById("help").innerHTML = "Sorry, no help available";
+                document.getElementById("help").innerHTML = "Sorry, no help available"
             }
+            score += 2
+            document.getElementById("Score").innerHTML = "score is " + score
+
         }
 
+        function bonusGame() {
+            chestCount = 0
+            score = 0
+            treasureLocation = Math.floor(Math.random() * 24)
+            if (treasureLocation == 12) {
+                treasureLocation = 12 + Math.floor(Math.random() * 12)
+            }
+            document.getElementById("chests").innerHTML = "Number of chests checked is zero "
+            document.getElementById("Score").innerHTML = "Score is unknown"
+
+            for (var i = 0; i <= 24; i++) {
+                if (i != 12)
+                    document.getElementById(ids[i]).src = "Treasure_Locked.png"
+            }
+
+        }
     </script>
 </body>
 
