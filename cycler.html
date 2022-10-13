@@ -79,7 +79,7 @@
 
 	function swap(){
         var cyclerItems=document.getElementsByClassName("cycler")
-        var length=cyclerItems.length
+        var length=cyclerItems.length 
         var first=Math.floor(Math.random()*(length-1))
         var second=Math.floor(Math.random()*(length-1))
 
@@ -91,7 +91,7 @@
             swapElement=document.createElement("div")
             swapElement.innerHTML=cyclerItems[1].textContent
             swapElement.className="cycler"
-            cyclerItems[1].remove()
+            cyclerItems[1].remove() 
             var container=document.getElementById("target")
             container.insertBefore(swapElement,container.firstChild)
         }
